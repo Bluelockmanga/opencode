@@ -1,0 +1,16 @@
+# Use the official OpenCode image for 2026
+FROM ghcr.io/opencode-ai/opencode:latest
+
+# Set working directory
+WORKDIR /app
+
+# OpenCode needs to write session and auth data
+# We'll use Back4app's environment variables to pass these
+ENV OPENCODE_SERVER_HOSTNAME=0.0.0.0
+ENV PORT=8080
+
+# Expose the port Back4app uses
+EXPOSE 8080
+
+# Start OpenCode in web mode for remote access
+CMD ["opencode", "web", "--port", "8080", "--hostname", "0.0.0.0"]
